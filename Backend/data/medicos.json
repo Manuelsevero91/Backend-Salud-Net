@@ -1,0 +1,165 @@
+{"medicos" : [
+    {
+     "name": "Karina Desposito",
+     "mail":"kdesposito@gmail.com",
+     "speciality": "Nutricionista",
+     "license": "MP 23574",
+     "password": "Password2",
+     "id": "2"
+    },
+    {
+     "name": "Ignacio Molina",
+     "mail":"imolina@gmail.com",
+     "speciality": "Medicina General",
+     "license": "MP14596",
+     "password": "Password3",
+     "id": "3"
+    },
+    {
+     "name": "Manuel Severo",
+     "mail":"msevero@gmail.com",
+     "speciality": "Psicologia",
+     "license": "MP19875",
+     "password": "Password4",
+     "id": "4"
+    },
+    {
+     "name": "Marina Erasun",
+     "mail":"merasun@gmail.com",
+     "speciality": "Oftalmologia",
+     "license": "MP 15896",
+     "password": "Password5",
+     "id": "5"
+    },
+    {
+     "name": "Andrea Logurcio",
+     "mail":"alogurcio@gmail.com",
+     "speciality": "Ginecologia",
+     "license": "MP 18965",
+     "password": "Password6",
+     "id": "6"
+    },
+    {
+     "name": "Pedro Logroño",
+     "mail":"plogronio@gmail.com",
+     "speciality": "Pediatria",
+     "license": "MP 13654",
+     "password": "Password7",
+     "id": "7"
+    },
+    {
+     "name": "Silvia Peralta",
+     "mail":"speralta@gmail.com", 
+     "speciality": "Enfermeria",
+     "license": "MP 16234",
+     "password": "Password8",
+     "id": "8"
+    },
+    {
+     "name": "Alfonso Hoop",
+     "mail":"ahoop@gmail.com",
+     "speciality": "Cardiologia",
+     "license": "MP 19852",
+     "password": "Password9",
+     "id": "9"
+    },
+    {
+     "name": "Luciano Sheepo",
+     "mail":"lsheepo@gmail.com",
+     "speciality": "Cirugia General",
+     "license": "MP 19523",
+     "password": "Password10",
+     "id": "10"
+    },
+    {
+     "name": "Natalia Blanco",
+     "mail":"nblanco@gmail.com",
+     "speciality": "Nutricionista",
+     "license": "MP 19965",
+     "password": "Password11",
+     "id": "11"
+    },
+    {
+     "name": "Osvaldo Fein",
+     "mail":"ofein@gmail.com",
+     "speciality": "Cardiologia",
+     "license": "MP 12369",
+     "password": "Password12",
+     "id": "12"
+    },
+    {
+     "name": "Yohana Bell",
+     "mail":"ybell@gmail.com",
+     "speciality": "Dermatologia",
+     "license": "MP 16523",
+     "password": "Password13",
+     "id": "13"
+    },
+    {
+     "name": "Carolina Silva",
+     "mail":"csilva@gmail.com",
+     "speciality": "Psicologia",
+     "license": "MP 17589",
+     "password": "Password14",
+     "id": "14"
+    },
+    {
+     "name": "Matias Davobe",
+     "mail":"mdavobe@gmail.com",
+     "speciality": "Dermatologia",
+     "license": "MP 18623",
+     "password": "Password15",
+     "id": "15"
+    },
+    {
+     "name": "Joel Garcia",
+     "mail":"jgarcia@gmail.com",
+     "speciality": "Neumonologia",
+     "license": "MP 13694",
+     "password": "Password16",
+     "id": "16"
+    },
+    {
+     "name": "Martin Alfaro",
+     "mail":"malfaro@gmail.com",
+     "speciality": "Diagnostico por imagenes",
+     "license": "MP 19852",
+     "password": "Password17",
+     "id": "17"
+    },
+    {
+     "name": "Cinthia Lorenzo",
+     "mail":"clorenzo@gmail.com",
+     "speciality": "Oftalmologia",
+     "license": "MP 13352",
+     "password": "Password18",
+     "id": "18"
+    },
+    {
+     "name": "Betiana Rich",
+     "mail":"brich@gmail.com",
+     "speciality": "Pediatria",
+     "license": "MP 15463",
+     "password": "Password19",
+     "id": "19"
+    },
+    {
+     "name": "Luciano Palomo",
+     "mail":"lpalomo@gmail.com",
+     "speciality": "Gastroenterologia",
+     "license": "MP 20802",
+     "password": "Password20",
+     "id": "20"
+    }
+   ]  }
+ 
+
+
+
+
+
+
+
+
+
+

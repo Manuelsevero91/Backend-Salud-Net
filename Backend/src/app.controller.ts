@@ -1,12 +1,12 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
-
-@Controller()
-export class AppController {
-  constructor(private readonly appService: AppService) {}
-
+import { Controller, Get, Res } from '@nestjs/common';
+import { Response } from 'express';
+import { join } from 'path';
+@Controller('medicos')
+export class MedicosController {
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
-  }
+    getMedicos(@Res() res: Response ){
+      //dirname: donde estoy parada
+      const dres = join (__dirname, '../data/medicos.json')
+      res.sendFile(dres)
+    }
 }
