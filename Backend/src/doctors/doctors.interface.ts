@@ -1,4 +1,4 @@
-export interface Doctors {
+export interface DoctorsI {
     name: string;
     mail:string;
     speciality: string;

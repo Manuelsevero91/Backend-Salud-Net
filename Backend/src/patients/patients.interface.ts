@@ -1,4 +1,4 @@
-export interface Patients {
+export interface PatientsI {
     name: string,
     phone: number,
     healthCoverage: string,
