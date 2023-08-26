@@ -1,7 +1,7 @@
-{"medicos" : [
+{"doctors" : [
     {
      "name": "Karina Desposito",
-     "mail":"kesposito@gmail.com",
+     "mail":"kdesposito@gmail.com",
      "speciality": "Nutricionista",
      "license": "MP 23574",
      "password": "Password2",
@@ -151,9 +151,5 @@
      "password": "Password20",
      "id": "20"
     }
-   ]  }
- 
-
-
-
-
+   ]
+}

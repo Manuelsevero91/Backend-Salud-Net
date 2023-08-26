@@ -6,6 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
+    "sn": "json-server --watch ./data/index.js --port 3030",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "db": "json-server data/medicos.json --watch --port 3030",
@@ -22,7 +23,7 @@
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
-    "@nestjs/core": "^10.0.0",
+    "@nestjs/core": "^10.1.3",
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/serve-static": "^4.0.0",
     "reflect-metadata": "^0.1.13",
