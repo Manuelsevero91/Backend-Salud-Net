@@ -4,5 +4,5 @@ export interface DoctorsI {
     speciality: string;
     license: string;
     password: string;
-    id: number;
+    id?: number;
 }

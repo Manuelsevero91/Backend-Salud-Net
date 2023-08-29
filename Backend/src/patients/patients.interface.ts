@@ -1,6 +1,7 @@
-export interface PatientsI {
+export interface PatientI {
     name: string,
     phone: number,
     healthCoverage: string,
-    id: number
+    dni: number,
+    id?: number
 }

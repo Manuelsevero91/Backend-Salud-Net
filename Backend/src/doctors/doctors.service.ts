@@ -1,7 +1,7 @@
 import {  Injectable } from '@nestjs/common';
 import { DoctorsI } from './doctors.interface';
 
-const url = 'http://localhost:3030/doctors';
+const url = 'http://localhost:3030/doctors/';
 @Injectable()
 export class DoctorsService {
   async getDoctors(): Promise<DoctorsI[]> {
@@ -13,6 +13,17 @@ export class DoctorsService {
       throw new Error ("error getting the list of doctors" )
     }
   }
+
+  async getDoctorById(id: number): Promise<DoctorsI> {
+    try {
+    const res = await fetch (url + id);
+    const parsed = await res.json();
+    return parsed;
+    } catch (error) {
+      throw new Error ("error getting the doctor" )
+    }
+}
+
   private async medId(): Promise<number> {
     try {
       const doctors = await this.getDoctors();
