@@ -6,8 +6,7 @@ export class PatientsService {
   async getPatients(): Promise<PatientI[]> {
    try {
     const res = await fetch(url);
-    const parsed = await res.json();
-    return parsed;
+    return await res.json();
    } catch (error) {
     throw new Error ("error getting the list of patients" )
    }
@@ -16,8 +15,8 @@ export class PatientsService {
   async getPatientById(id: number): Promise<PatientI> {
     try {
     const res = await fetch(url + id);
-    const parsed = await res.json();
-    return parsed;
+    return await res.json();
+
     } catch (error) {
         throw new Error ("error getting the patient" )
     }
@@ -25,7 +24,7 @@ export class PatientsService {
   private async patId(): Promise<number> {
     try {
       const patients = await this.getPatients();
-      const id = patients.pop().id + 1;
+      const id = patients.pop().id + 1; //cambiar por uuid
       return id;
     }catch (error) {
       throw new Error("error creating id")

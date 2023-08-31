@@ -175,6 +175,14 @@
       "license": "MP 23570",
       "password": "Password80",
       "id": "dOa94K411"
+    },
+    {
+      "name": "Josefina Ga",
+      "mail": "jga@gmail.com",
+      "speciality": "Medicina",
+      "license": "MP 1",
+      "password": "Password81",
+      "id": "dOa94K4111"
     }
   ],
   "patients": [
@@ -261,6 +269,13 @@
       "healthCoverage": "ospyn",
       "dni": "39988500",
       "id": 12
-    } 
+    },
+    {
+      "name": "Pedro Perez",
+      "phone": "2281563285",
+      "healthCoverage": "ospyn",
+      "dni": "39988501",
+      "id": 13
+    }
   ]
 }
