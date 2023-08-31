@@ -6,10 +6,9 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "sn": "json-server --watch ./data/index.js --port 3030",
+    "sn": "json-server data/sn.json --watch --port 3030",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "db": "json-server data/medicos.json --watch --port 3030",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
