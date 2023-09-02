@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { DoctorsI } from './doctors.interface';
+const { v4: uuidv4 } = require('uuid');
 
 const url = 'http://localhost:3030/doctors/';
 @Injectable()
@@ -24,8 +25,7 @@ export class DoctorsService {
 
   private async medId(): Promise<number> {
     try {
-      const doctors = await this.getDoctors();
-      const id = doctors.pop().id + 1; //cambiarlo uuid
+      const id =uuidv4().slice(0, 6)
       return id;
     } catch (error) {
       throw new Error('error creating id');
@@ -42,7 +42,15 @@ export class DoctorsService {
         },
         body: JSON.stringify(newDoctor),
       });
-      return { message: `the doctor created`, data: newDoctor };
+      const respData = {
+        message: 'The doctor was created',
+        data: {
+          license: newDoctor.license,
+          name: newDoctor.name, 
+          speciality: newDoctor.speciality, 
+          mail: newDoctor.mail
+        }}
+        return respData;
     } catch (error) {
       throw new Error('the doctor was not created');
     }
