@@ -1,10 +1,10 @@
-import { Controller, Get, Param, Body, Post} from '@nestjs/common';
+import { Controller, Get, Param, Body, Post } from '@nestjs/common';
 import { PatientsService } from './patients.service';
 import { PatientI } from './patients.interface';
 
 @Controller('patients')
 export class PatientsController {
-  constructor(private readonly patientsService: PatientsService) {}
+  constructor(private readonly patientsService: PatientsService) { }
   @Get()
   getPatients(): any {
     return this.patientsService.getPatients();
