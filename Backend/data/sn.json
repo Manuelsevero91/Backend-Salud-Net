@@ -177,12 +177,12 @@
       "id": "dOa94K411"
     },
     {
-      "name": "Josefina Ga",
-      "mail": "jga@gmail.com",
-      "speciality": "Medicina",
-      "license": "MP 1",
-      "password": "Password81",
-      "id": "dOa94K4111"
+      "name": "Josefina Lopez",
+      "mail": "jlopez@gmail.com",
+      "speciality": "Odontologia",
+      "license": "MP 15962",
+      "password": "Password98",
+      "id": "a62b61"
     }
   ],
   "patients": [
@@ -276,6 +276,27 @@
       "healthCoverage": "ospyn",
       "dni": "39988501",
       "id": 13
+    },
+    {
+      "name": "Pedro Garcia",
+      "phone": "2281563295",
+      "healthCoverage": "ospyn",
+      "dni": "39988591",
+      "id": 14
+    },
+    {
+      "name": "Pedro Garcia",
+      "phone": "2281563295",
+      "healthCoverage": "ospyn",
+      "dni": "39988591",
+      "id": 15
+    },
+    {
+      "name": "Pedro Garcia",
+      "phone": "2281563295",
+      "healthCoverage": "ospyn",
+      "dni": "39988591",
+      "id": 16
     }
   ]
 }
