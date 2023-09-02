@@ -44,7 +44,7 @@ export class PatientsService {
         body: JSON.stringify(newPatient),
       });
       const dataPatient = {
-        message: 'The doctor was created',
+        message: 'The patient was created',
         data: {
           name: newPatient.name,
           phone: newPatient.phone,
