@@ -17,7 +17,7 @@ export class DoctorsService {
   async getDoctorById(id: number): Promise<DoctorsI> {
     try {
       const res = await fetch(url + id);
-      return await res.json();  
+      return await res.json();
     } catch (error) {
       throw new Error('error getting the doctor');
     }
@@ -25,7 +25,7 @@ export class DoctorsService {
 
   private async medId(): Promise<number> {
     try {
-      const id =uuidv4().slice(0, 6)
+      const id = uuidv4().slice(0, 6);
       return id;
     } catch (error) {
       throw new Error('error creating id');
@@ -46,13 +46,51 @@ export class DoctorsService {
         message: 'The doctor was created',
         data: {
           license: newDoctor.license,
-          name: newDoctor.name, 
-          speciality: newDoctor.speciality, 
-          mail: newDoctor.mail
-        }}
-        return respData;
+          name: newDoctor.name,
+          speciality: newDoctor.speciality,
+          mail: newDoctor.mail,
+        },
+      };
+      return respData;
     } catch (error) {
       throw new Error('the doctor was not created');
+    }
+  }
+  async deleteDoctorById(id: number): Promise<any> {
+    try {
+      const res = await fetch(url + id, {
+        method: 'DELETE',
+      });
+      const parsed = await res.json();
+      return { message: `The doctor was deleted with id ${id}` };
+    } catch (error) {
+      throw new Error('error deleting doctor');
+    }
+  }
+  async updateDoctorById(id: number, body: DoctorsI): Promise<any> {
+    try {
+      const isMed = await this.getDoctorById(id);
+      if (!Object.keys(isMed).length) return;
+      const updatedDoctor = { ...body, id };
+      await fetch(url + id, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedDoctor),
+      });
+      const respData = {
+        message: 'The doctor was updated',
+        data: {
+          license: updatedDoctor.license,
+          name: updatedDoctor.name,
+          speciality: updatedDoctor.speciality,
+          mail: updatedDoctor.mail,
+        },
+      };
+      return respData;
+    } catch (error) {
+      throw new Error('error updating doctor');
     }
   }
 }

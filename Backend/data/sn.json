@@ -191,10 +191,17 @@
       "license": "MP 23570",
       "password": "Password80",
       "id": "556e3e"
+    },
+    {
+      "name": "Juan Pedro Erasun",
+      "mail": "perasun@gmail.com",
+      "speciality": "Urologia",
+      "license": "MP 32570",
+      "password": "Password35",
+      "id": "0a6cdc"
     }
   ],
   "patients": [
-    
     {
       "name": "Gerry Mulligan",
       "phone": "2281563285",
