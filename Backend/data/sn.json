@@ -201,7 +201,7 @@
       "id": "7a36bf"
     },
     {
-      "name": "Jonathan Maidana",
+      "name": "Fernando Maidana",
       "phone": "2281563247",
       "healthCoverage": "ospyn",
       "dni": "39988521",
@@ -283,13 +283,6 @@
       "healthCoverage": "ospyn",
       "dni": "39988500",
       "id": "937d38"
-    },
-    {
-      "name": "Pedro Perez",
-      "phone": "2281563285",
-      "healthCoverage": "ospyn",
-      "dni": "39988501",
-      "id": "231d26"
     }
   ]
 }
