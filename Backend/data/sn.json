@@ -185,20 +185,11 @@
       "id": "1ae690"
     },
     {
-      "name": "Josefina Garcia",
-      "mail": "jgarcia@gmail.com",
-      "speciality": "Medicina General",
       "license": "MP 23570",
-      "password": "Password80",
+      "name": "Josefa Garcia Perez",
+      "speciality": "Bioquimica",
+      "mail": "jgarciap@gmail.com",
       "id": "556e3e"
-    },
-    {
-      "name": "Juan Pedro Erasun",
-      "mail": "perasun@gmail.com",
-      "speciality": "Urologia",
-      "license": "MP 32570",
-      "password": "Password35",
-      "id": "0a6cdc"
     }
   ],
   "patients": [

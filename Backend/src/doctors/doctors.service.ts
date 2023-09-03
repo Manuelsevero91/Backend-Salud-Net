@@ -14,10 +14,20 @@ export class DoctorsService {
     }
   }
 
-  async getDoctorById(id: number): Promise<DoctorsI> {
+  async getDoctorById(id: number): Promise<any> {
     try {
       const res = await fetch(url + id);
-      return await res.json();
+      const parsed = await res.json();
+      const respData = {
+        message: 'The doctor found has this data',
+        data: {
+          name: parsed.name,
+          mail: parsed.mail,
+          speciality: parsed.speciality,
+          license: parsed.license,
+        },
+      };
+      return respData;
     } catch (error) {
       throw new Error('error getting the doctor');
     }
@@ -61,36 +71,45 @@ export class DoctorsService {
       const res = await fetch(url + id, {
         method: 'DELETE',
       });
+      if (!res.ok) {
+        throw new Error('Failed to delete doctor');
+      }
       const parsed = await res.json();
       return { message: `The doctor was deleted with id ${id}` };
     } catch (error) {
       throw new Error('error deleting doctor');
     }
   }
-  async updateDoctorById(id: number, body: DoctorsI): Promise<any> {
+  async updateDoctorById(id: number, body: DoctorsI): Promise<DoctorsI | null> {
     try {
-      const isMed = await this.getDoctorById(id);
-      if (!Object.keys(isMed).length) return;
-      const updatedDoctor = { ...body, id };
-      await fetch(url + id, {
+      const isDoctor = await this.getDoctorById(id);
+      if (!Object.keys(isDoctor).length) {
+        return null; 
+      }
+  
+      const upDoctor = { 
+        license: body.license,
+        name: body.name,
+        speciality: body.speciality,
+        mail: body.mail,
+      };
+  
+      const res = await fetch(url + id, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(updatedDoctor),
+        body: JSON.stringify(upDoctor),
       });
-      const respData = {
-        message: 'The doctor was updated',
-        data: {
-          license: updatedDoctor.license,
-          name: updatedDoctor.name,
-          speciality: updatedDoctor.speciality,
-          mail: updatedDoctor.mail,
-        },
-      };
-      return respData;
+  
+      if (!res.ok) {
+        throw new Error('Failed to update the doctor');
+      }
+      const updatedData: DoctorsI = await res.json();
+      return updatedData;
     } catch (error) {
-      throw new Error('error updating doctor');
+      throw new Error('Error updating the doctor');
     }
   }
-}
+  }
+

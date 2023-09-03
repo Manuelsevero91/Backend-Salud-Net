@@ -63,12 +63,12 @@ export class DoctorsController {
     @Param('id') id: number,
     @Res() res: Response,
     @Body() body,
-  ): Promise<any> {
+  ): Promise<Response<any>> {
     try {
       const updateDoc = await this.doctorsServices.updateDoctorById(id, body);
-      return res.status(HttpStatus.OK).send(updateDoc);
+      return res.status(HttpStatus.OK).send(updateDoc) ;
     } catch (error) {
-      throw new NotFoundException('Delete failed');
+      throw new BadRequestException(`Doctor with ${id} was not found`);
     }
   }
   @Delete(':id')
