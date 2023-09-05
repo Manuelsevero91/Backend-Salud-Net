@@ -71,7 +71,7 @@ export class PatientsService {
 
   }
 
-  async updatePatientById(id: number, body: PatientI): Promise<PatientI> {
+    async updatePatientById(id: number, body: PatientI): Promise<any> {
     try {
       const isPatient = await this.getPatientById(id);
       if (!Object.keys(isPatient).length) return;
@@ -83,10 +83,18 @@ export class PatientsService {
         },
         body: JSON.stringify(upPatient),
       });
-      return upPatient;
+      const dataPatient = {
+        message: 'The patient was updated',
+        data: {
+          name: upPatient.name,
+          phone: upPatient.phone,
+          healthCoverage: upPatient.healthCoverage,
+          dni: upPatient.dni,
+        },
+      };
+      return dataPatient;
     } catch (error) {
       throw new Error('the patient was not up dated');
     }
   }
-
 }
