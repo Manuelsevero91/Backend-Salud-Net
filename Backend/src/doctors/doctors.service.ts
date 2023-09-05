@@ -59,6 +59,7 @@ export class DoctorsService {
           name: newDoctor.name,
           speciality: newDoctor.speciality,
           mail: newDoctor.mail,
+          id: newDoctor.id
         },
       };
       return respData;
@@ -88,10 +89,10 @@ export class DoctorsService {
       }
   
       const upDoctor = { 
-        license: body.license,
         name: body.name,
-        speciality: body.speciality,
         mail: body.mail,
+        speciality: body.speciality,
+        license: body.license,
       };
   
       const res = await fetch(url + id, {

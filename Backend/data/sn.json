@@ -177,29 +177,15 @@
       "id": "00af08"
     },
     {
-      "name": "Karina Garcia",
-      "mail": "kgarcia@gmail.com",
-      "speciality": "Odontologia",
-      "license": "MP 23571",
-      "password": "Password0",
-      "id": "1ae690"
-    },
-    {
-      "license": "MP 23570",
-      "name": "Josefa Garcia Perez",
-      "speciality": "Bioquimica",
-      "mail": "jgarciap@gmail.com",
-      "id": "556e3e"
+      "name": "Pedro Gomez Molina",
+      "mail": "pgomezm@gmail.com",
+      "speciality": "Medicina General",
+      "license": "MP 32850",
+      "password": "Password78",
+      "id": "31c0b8"
     }
   ],
   "patients": [
-    {
-      "name": "Gerry Mulligan",
-      "phone": "2281563285",
-      "healthCoverage": "ospyn",
-      "dni": "31268956",
-      "id": "7a36bf"
-    },
     {
       "name": "Fernando Maidana",
       "phone": "2281563247",
@@ -278,11 +264,18 @@
       "id": "48baf8"
     },
     {
-      "name": "Jonathan Perez",
-      "phone": "2281563267",
+      "name": "Garry Mulligan",
+      "phone": "2281563285",
       "healthCoverage": "ospyn",
-      "dni": "39988500",
+      "dni": "31268956",
       "id": "937d38"
+    },
+    {
+      "name": "Pedro Garcia Lorca",
+      "phone": "2281563291",
+      "healthCoverage": "ospyn",
+      "dni": "39988590",
+      "id": "df6c54"
     }
   ]
 }

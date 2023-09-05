@@ -49,6 +49,7 @@ export class PatientsService {
           phone: newPatient.phone,
           healthCoverage: newPatient.healthCoverage,
           dni: newPatient.dni,
+          id: newPatient.id
         },
       };
       return dataPatient;
