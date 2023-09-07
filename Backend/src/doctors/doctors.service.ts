@@ -1,11 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { DoctorsI } from './doctors.interface';
 const { v4: uuidv4 } = require('uuid');
+import { DoctorsDto } from './doctors.dto';
+import { DoctorsDtoId } from './doctorsId.dto';
 
 const url = 'http://localhost:3030/doctors/';
 @Injectable()
 export class DoctorsService {
-  async getDoctors(): Promise<DoctorsI[]> {
+  async getDoctors(): Promise<DoctorsDtoId[]> {
     try {
       const res = await fetch(url);
       return await res.json();
@@ -41,7 +42,7 @@ export class DoctorsService {
       throw new Error('error creating id');
     }
   }
-  async createDoctor(doctors: DoctorsI) {
+  async createDoctor(doctors:DoctorsDto) {
     try {
       const id = await this.medId();
       const newDoctor = { ...doctors, id };
@@ -81,7 +82,7 @@ export class DoctorsService {
       throw new Error('error deleting doctor');
     }
   }
-  async updateDoctorById(id: number, body: DoctorsI): Promise<DoctorsI | null> {
+  async updateDoctorById(id: number, body: DoctorsDto ): Promise<DoctorsDto | null> {
     try {
       const isDoctor = await this.getDoctorById(id);
       if (!Object.keys(isDoctor).length) {
@@ -106,7 +107,7 @@ export class DoctorsService {
       if (!res.ok) {
         throw new Error('Failed to update the doctor');
       }
-      const updatedData: DoctorsI = await res.json();
+      const updatedData: DoctorsDto = await res.json();
       return updatedData;
     } catch (error) {
       throw new Error('Error updating the doctor');

@@ -10,16 +10,19 @@ import {
   BadRequestException,
   Delete,
   Put,
+  ValidationPipe,
+  UsePipes
 } from '@nestjs/common';
 import { DoctorsService } from './doctors.service';
-import { DoctorsI } from './doctors.interface';
 import { Response } from 'express';
+import { DoctorsDto } from './doctors.dto';
+import { DoctorsDtoId } from './doctorsId.dto';
 
 @Controller('doctors')
 export class DoctorsController {
   constructor(private readonly doctorsServices: DoctorsService) {}
   @Get()
-  async getDoctors(@Res() res: Response): Promise<Response<DoctorsI[]>> {
+  async getDoctors(@Res() res: Response): Promise<Response<DoctorsDtoId[]>> {
     try {
       const docResp = await this.doctorsServices.getDoctors();
       return res.status(HttpStatus.OK).send(docResp);
@@ -31,7 +34,7 @@ export class DoctorsController {
   async getDoctorById(
     @Param('id') id: number,
     @Res() res: Response,
-  ): Promise<Response<DoctorsI>> {
+  ): Promise<Response<DoctorsDtoId>> {
     try {
       const idDocResp = await this.doctorsServices.getDoctorById(id);
       if (Object.keys(idDocResp).length) {
@@ -47,10 +50,11 @@ export class DoctorsController {
   }
 
   @Post()
+  @UsePipes(new ValidationPipe({ transform: true }))
   async createDoctor(
-    @Body() body,
+    @Body() body:DoctorsDto,
     @Res() res: Response,
-  ): Promise<Response<DoctorsI>> {
+  ): Promise<Response<DoctorsDto>> {
     try {
       const createDoc = await this.doctorsServices.createDoctor(body);
       return res.status(HttpStatus.CREATED).send(createDoc);
@@ -59,11 +63,12 @@ export class DoctorsController {
     }
   }
   @Put(':id')
+  @UsePipes(new ValidationPipe({ transform: true }))
   async updateDoctor(
     @Param('id') id: number,
     @Res() res: Response,
-    @Body() body,
-  ): Promise<Response<any>> {
+    @Body() body:DoctorsDto,
+  ): Promise<Response<DoctorsDto>> {
     try {
       const updateDoc = await this.doctorsServices.updateDoctorById(id, body);
       return res.status(HttpStatus.OK).send(updateDoc) ;
@@ -75,7 +80,7 @@ export class DoctorsController {
   async deleteDoctor(
     @Param('id') id: number,
     @Res() res: Response,
-  ): Promise<Response<DoctorsI>> {
+  ): Promise<Response<DoctorsDto>> {
     try {
       const deleteDoc = await this.doctorsServices.deleteDoctorById(id);
       return res.status(HttpStatus.OK).send(deleteDoc);
