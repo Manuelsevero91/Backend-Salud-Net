@@ -32,7 +32,7 @@ export class DoctorsController {
   }
   @Get(':id')
   async getDoctorById(
-    @Param('id') id: number,
+    @Param('id') id: string,
     @Res() res: Response,
   ): Promise<Response<DoctorsDtoId>> {
     try {
@@ -65,10 +65,10 @@ export class DoctorsController {
   @Put(':id')
   @UsePipes(new ValidationPipe({ transform: true }))
   async updateDoctor(
-    @Param('id') id: number,
+    @Param('id') id: string,
     @Res() res: Response,
     @Body() body:DoctorsDto,
-  ): Promise<Response<DoctorsDto>> {
+  ): Promise<Response<any>> {
     try {
       const updateDoc = await this.doctorsServices.updateDoctorById(id, body);
       return res.status(HttpStatus.OK).send(updateDoc) ;
@@ -77,8 +77,9 @@ export class DoctorsController {
     }
   }
   @Delete(':id')
+  @UsePipes(new ValidationPipe({ transform: true }))
   async deleteDoctor(
-    @Param('id') id: number,
+    @Param('id') id: string,
     @Res() res: Response,
   ): Promise<Response<DoctorsDto>> {
     try {

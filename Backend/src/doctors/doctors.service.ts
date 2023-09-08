@@ -15,7 +15,7 @@ export class DoctorsService {
     }
   }
 
-  async getDoctorById(id: number): Promise<any> {
+  async getDoctorById(id: string): Promise<any> {
     try {
       const res = await fetch(url + id);
       const parsed = await res.json();
@@ -68,7 +68,7 @@ export class DoctorsService {
       throw new Error('the doctor was not created');
     }
   }
-  async deleteDoctorById(id: number): Promise<any> {
+  async deleteDoctorById(id: string): Promise<any> {
     try {
       const res = await fetch(url + id, {
         method: 'DELETE',
@@ -82,7 +82,7 @@ export class DoctorsService {
       throw new Error('error deleting doctor');
     }
   }
-  async updateDoctorById(id: number, body: DoctorsDto ): Promise<DoctorsDto | null> {
+  async updateDoctorById(id: string, body: DoctorsDto ): Promise<DoctorsDto | null> {
     try {
       const isDoctor = await this.getDoctorById(id);
       if (!Object.keys(isDoctor).length) {

@@ -1,11 +1,10 @@
 {
   "doctors": [
     {
-      "name": "Josefina Lopez",
-      "mail": "jlopez@gmail.com",
-      "speciality": "Odontologia",
-      "license": "MP 15962",
-      "password": "Password98",
+      "name": "Pedro Gomez Molina",
+      "mail": "pgomezm@gmail.com",
+      "speciality": "Medicina General",
+      "license": "MP 3285",
       "id": "a62b61"
     },
     {
@@ -180,8 +179,7 @@
       "name": "Pedro Gomez Molina",
       "mail": "pgomezm@gmail.com",
       "speciality": "Medicina General",
-      "license": "MP 32850",
-      "password": "Password78",
+      "license": "MP 3285",
       "id": "31c0b8"
     }
   ],
