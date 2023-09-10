@@ -184,14 +184,12 @@
       "id": "31c0b8"
     },
     {
-      "message": "The doctor was updated",
-      "data": {
-        "name": "Pedro Gomez Molinaapa",
-        "mail": "pgomezm@gmail.com",
-        "speciality": "Medicina General",
-        "license": "MP 3285"
-      },
-      "id": "3f1765"
+      "name": "Pedro Gonz",
+      "mail": "pgonz@gmail.com",
+      "speciality": "Medicina General",
+      "license": "MP 32851",
+      "password": "Password72",
+      "id": "943d1e"
     }
   ],
   "patients": [

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpStatus } from '@nestjs/common';
 const { v4: uuidv4 } = require('uuid');
 import { DoctorsDto } from './doctors.dto';
 import { DoctorsDtoSnPass } from './doctorsSnPass.dto';
@@ -10,8 +10,17 @@ export class DoctorsService {
   async getDoctors(): Promise<DoctorsDto[]> {
     try {
       const res = await fetch(url);
-      return await res.json();
-    } catch (error) {    
+      const doctors= await res.json();
+      
+      const dataDoctors= doctors.map(doctor=>({
+        name: doctor.name,
+        mail: doctor.mail,
+        speciality: doctor.speciality,
+        license: doctor.license,
+        id: doctor.id
+      }));
+      return dataDoctors
+    } catch (error) {  
      throw new Error('error getting the list of doctors');
    }
   }
@@ -32,6 +41,7 @@ export class DoctorsService {
         speciality: parsed.speciality,
         license: parsed.license,
       },
+      statusCode: HttpStatus.OK
     };
     return respData;
   }
@@ -56,16 +66,14 @@ export class DoctorsService {
         body: JSON.stringify(newDoctor),
       });
       const respData = {
-        message: 'The doctor was created',
-        data: {
           license: newDoctor.license,
           name: newDoctor.name,
           speciality: newDoctor.speciality,
           mail: newDoctor.mail,
           id: newDoctor.id
-        },
-      };
-      return respData;
+        }
+    
+      return  respData;
     } catch (error) {
       throw new Error('the doctor was not created');
     }
@@ -79,7 +87,7 @@ export class DoctorsService {
         throw new Error('Failed to delete doctor');
       }
       const parsed = await res.json();
-      return { message: `The doctor was deleted with id ${id}` };
+      return { message: `The doctor was deleted with id ${id}`, statusCode: HttpStatus.OK  };
     } catch (error) {
       throw new Error('error deleting doctor');
     }

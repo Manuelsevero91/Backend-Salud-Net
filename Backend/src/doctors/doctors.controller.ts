@@ -24,8 +24,8 @@ export class DoctorsController {
   @Get()
   async getDoctors(@Res() res: Response): Promise<Response<DoctorsDto[]>> {
     try {
-      const docResp = await this.doctorsServices.getDoctors();
-      return res.status(HttpStatus.OK).send(docResp);
+      const data = await this.doctorsServices.getDoctors();
+      return res.status(HttpStatus.OK).send({message: "The Doctor list",data, statusCode: HttpStatus.OK });
     } catch (error) {
       throw new NotFoundException('Doctor list not found');
     }
@@ -38,7 +38,7 @@ export class DoctorsController {
     try {
       const idDocResp = await this.doctorsServices.getDoctorById(id);
       if (Object.keys(idDocResp).length) {
-        return res.status(HttpStatus.OK).send(idDocResp);
+        return res.status(HttpStatus.OK).send(idDocResp)
       } else {
         return res
           .status(HttpStatus.NOT_FOUND)
