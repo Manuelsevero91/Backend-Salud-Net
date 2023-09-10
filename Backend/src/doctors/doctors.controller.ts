@@ -16,13 +16,13 @@ import {
 import { DoctorsService } from './doctors.service';
 import { Response } from 'express';
 import { DoctorsDto } from './doctors.dto';
-import { DoctorsDtoId } from './doctorsId.dto';
+import { DoctorsDtoSnPass } from './doctorsSnPass.dto';
 
 @Controller('doctors')
 export class DoctorsController {
   constructor(private readonly doctorsServices: DoctorsService) {}
   @Get()
-  async getDoctors(@Res() res: Response): Promise<Response<DoctorsDtoId[]>> {
+  async getDoctors(@Res() res: Response): Promise<Response<DoctorsDto[]>> {
     try {
       const docResp = await this.doctorsServices.getDoctors();
       return res.status(HttpStatus.OK).send(docResp);
@@ -34,7 +34,7 @@ export class DoctorsController {
   async getDoctorById(
     @Param('id') id: string,
     @Res() res: Response,
-  ): Promise<Response<DoctorsDtoId>> {
+  ): Promise<Response<any>> {
     try {
       const idDocResp = await this.doctorsServices.getDoctorById(id);
       if (Object.keys(idDocResp).length) {
@@ -67,7 +67,7 @@ export class DoctorsController {
   async updateDoctor(
     @Param('id') id: string,
     @Res() res: Response,
-    @Body() body:DoctorsDto,
+    @Body() body:DoctorsDtoSnPass,
   ): Promise<Response<any>> {
     try {
       const updateDoc = await this.doctorsServices.updateDoctorById(id, body);

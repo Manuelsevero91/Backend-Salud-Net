@@ -1,12 +1,10 @@
 import {
   IsString,
   IsEmail,
-  MinLength,
-  MaxLength,
-  IsNotEmpty,
+  IsNotEmpty
 } from 'class-validator';
 import { Expose } from 'class-transformer';
-export class DoctorsDtoId {
+export class DoctorsDtoSnPass {
   @IsString()
   @IsNotEmpty()
   @Expose()
@@ -26,16 +24,4 @@ export class DoctorsDtoId {
   @Expose()
   @IsNotEmpty()
   license: string;
-
-  @IsString()
-  @Expose()
-  @MaxLength(10)
-  @MinLength(5)
-  @IsNotEmpty()
-  password: string;
-
-  @Expose()
-  @IsString()
-  @IsNotEmpty()
-  id: string;
 }

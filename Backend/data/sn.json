@@ -5,6 +5,7 @@
       "mail": "pgomezm@gmail.com",
       "speciality": "Medicina General",
       "license": "MP 3285",
+      "password": "Password7",
       "id": "a62b61"
     },
     {
@@ -181,6 +182,16 @@
       "speciality": "Medicina General",
       "license": "MP 3285",
       "id": "31c0b8"
+    },
+    {
+      "message": "The doctor was updated",
+      "data": {
+        "name": "Pedro Gomez Molinaapa",
+        "mail": "pgomezm@gmail.com",
+        "speciality": "Medicina General",
+        "license": "MP 3285"
+      },
+      "id": "3f1765"
     }
   ],
   "patients": [

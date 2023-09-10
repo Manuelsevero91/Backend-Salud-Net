@@ -33,5 +33,6 @@ import {
     @MinLength(5)
     @IsNotEmpty()
     password: string;
+
   }
   

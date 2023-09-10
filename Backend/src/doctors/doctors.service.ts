@@ -1,40 +1,42 @@
 import { Injectable } from '@nestjs/common';
 const { v4: uuidv4 } = require('uuid');
 import { DoctorsDto } from './doctors.dto';
-import { DoctorsDtoId } from './doctorsId.dto';
+import { DoctorsDtoSnPass } from './doctorsSnPass.dto';
+
 
 const url = 'http://localhost:3030/doctors/';
 @Injectable()
 export class DoctorsService {
-  async getDoctors(): Promise<DoctorsDtoId[]> {
+  async getDoctors(): Promise<DoctorsDto[]> {
     try {
       const res = await fetch(url);
       return await res.json();
-    } catch (error) {
-      throw new Error('error getting the list of doctors');
-    }
+    } catch (error) {    
+     throw new Error('error getting the list of doctors');
+   }
   }
 
   async getDoctorById(id: string): Promise<any> {
-    try {
-      const res = await fetch(url + id);
-      const parsed = await res.json();
-      const respData = {
-        message: 'The doctor found has this data',
-        data: {
-          name: parsed.name,
-          mail: parsed.mail,
-          speciality: parsed.speciality,
-          license: parsed.license,
-        },
-      };
-      return respData;
-    } catch (error) {
-      throw new Error('error getting the doctor');
+    const res = await fetch(url + id);
+  
+    if (res.status === 404) {
+      throw new Error(`Doctor with ID ${id} not found`);
     }
+  
+    const parsed = await res.json();
+    const respData = {
+      message: 'The doctor found has this data',
+      data: {
+        name: parsed.name,
+        mail: parsed.mail,
+        speciality: parsed.speciality,
+        license: parsed.license,
+      },
+    };
+    return respData;
   }
 
-  private async medId(): Promise<number> {
+ private async medId(): Promise<number> {
     try {
       const id = uuidv4().slice(0, 6);
       return id;
@@ -82,19 +84,20 @@ export class DoctorsService {
       throw new Error('error deleting doctor');
     }
   }
-  async updateDoctorById(id: string, body: DoctorsDto ): Promise<DoctorsDto | null> {
+  async updateDoctorById(id: string, body: DoctorsDtoSnPass ): Promise<DoctorsDtoSnPass | null> {
     try {
       const isDoctor = await this.getDoctorById(id);
       if (!Object.keys(isDoctor).length) {
         return null; 
       }
   
-      const upDoctor = { 
+      const upDoctor = { message: 'The doctor was updated',
+      data: {
         name: body.name,
         mail: body.mail,
         speciality: body.speciality,
-        license: body.license,
-      };
+        license: body.license
+     } };
   
       const res = await fetch(url + id, {
         method: 'PUT',
@@ -107,8 +110,8 @@ export class DoctorsService {
       if (!res.ok) {
         throw new Error('Failed to update the doctor');
       }
-      const updatedData: DoctorsDto = await res.json();
-      return updatedData;
+      const updatedData: DoctorsDtoSnPass = await res.json();
+      return updatedData ;
     } catch (error) {
       throw new Error('Error updating the doctor');
     }
