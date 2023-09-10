@@ -25,7 +25,7 @@ export class DoctorsService {
    }
   }
 
-  async getDoctorById(id: string): Promise<any> {
+  async getDoctorById(id: string): Promise<{data:DoctorsDtoSnPass,message:string, statusCode: number}> {
     const res = await fetch(url + id);
   
     if (res.status === 404) {
@@ -66,19 +66,22 @@ export class DoctorsService {
         body: JSON.stringify(newDoctor),
       });
       const respData = {
+        message: "The doctor was created",
+        data:{
           license: newDoctor.license,
           name: newDoctor.name,
           speciality: newDoctor.speciality,
           mail: newDoctor.mail,
           id: newDoctor.id
-        }
+        },
+      statusCode: HttpStatus.OK}
     
       return  respData;
     } catch (error) {
       throw new Error('the doctor was not created');
     }
   }
-  async deleteDoctorById(id: string): Promise<any> {
+  async deleteDoctorById(id: string): Promise<{message:string, statusCode: number}> {
     try {
       const res = await fetch(url + id, {
         method: 'DELETE',
@@ -92,20 +95,19 @@ export class DoctorsService {
       throw new Error('error deleting doctor');
     }
   }
-  async updateDoctorById(id: string, body: DoctorsDtoSnPass ): Promise<DoctorsDtoSnPass | null> {
+  async updateDoctorById(id: string, body: DoctorsDtoSnPass ): Promise<{message:string, statusCode: number, data: DoctorsDtoSnPass | null}>  {
     try {
       const isDoctor = await this.getDoctorById(id);
       if (!Object.keys(isDoctor).length) {
         return null; 
       }
   
-      const upDoctor = { message: 'The doctor was updated',
-      data: {
+      const upDoctor = { 
         name: body.name,
         mail: body.mail,
         speciality: body.speciality,
         license: body.license
-     } };
+     };
   
       const res = await fetch(url + id, {
         method: 'PUT',
@@ -119,7 +121,7 @@ export class DoctorsService {
         throw new Error('Failed to update the doctor');
       }
       const updatedData: DoctorsDtoSnPass = await res.json();
-      return updatedData ;
+      return  {message:"Doctor updated succesfully", data: updatedData, statusCode: HttpStatus.OK };
     } catch (error) {
       throw new Error('Error updating the doctor');
     }

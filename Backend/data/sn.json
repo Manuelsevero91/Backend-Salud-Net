@@ -175,21 +175,6 @@
       "license": "MP 20582",
       "password": "Password21",
       "id": "00af08"
-    },
-    {
-      "name": "Pedro Gomez Molina",
-      "mail": "pgomezm@gmail.com",
-      "speciality": "Medicina General",
-      "license": "MP 3285",
-      "id": "31c0b8"
-    },
-    {
-      "name": "Pedro Gonz",
-      "mail": "pgonz@gmail.com",
-      "speciality": "Medicina General",
-      "license": "MP 32851",
-      "password": "Password72",
-      "id": "943d1e"
     }
   ],
   "patients": [

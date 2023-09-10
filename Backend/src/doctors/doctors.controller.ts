@@ -34,7 +34,7 @@ export class DoctorsController {
   async getDoctorById(
     @Param('id') id: string,
     @Res() res: Response,
-  ): Promise<Response<any>> {
+  ): Promise<Response<DoctorsDto>> {
     try {
       const idDocResp = await this.doctorsServices.getDoctorById(id);
       if (Object.keys(idDocResp).length) {
@@ -68,7 +68,7 @@ export class DoctorsController {
     @Param('id') id: string,
     @Res() res: Response,
     @Body() body:DoctorsDtoSnPass,
-  ): Promise<Response<any>> {
+  ): Promise<Response<DoctorsDtoSnPass>> {
     try {
       const updateDoc = await this.doctorsServices.updateDoctorById(id, body);
       return res.status(HttpStatus.OK).send(updateDoc) ;
