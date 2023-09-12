@@ -24,8 +24,8 @@ export class DoctorsController {
   @Get()
   async getDoctors(@Res() res: Response): Promise<Response<DoctorsDto[]>> {
     try {
-      const data = await this.doctorsServices.getDoctors();
-      return res.status(HttpStatus.OK).send({message: "The Doctor list",data, statusCode: HttpStatus.OK });
+      const doctorsList = await this.doctorsServices.getDoctors();
+      return res.status(HttpStatus.OK).send({message: "The Doctor list",data: doctorsList, statusCode: HttpStatus.OK });
     } catch (error) {
       throw new NotFoundException('Doctor list not found');
     }
@@ -37,15 +37,9 @@ export class DoctorsController {
   ): Promise<Response<DoctorsDto>> {
     try {
       const idDocResp = await this.doctorsServices.getDoctorById(id);
-      if (Object.keys(idDocResp).length) {
-        return res.status(HttpStatus.OK).send(idDocResp)
-      } else {
-        return res
-          .status(HttpStatus.NOT_FOUND)
-          .json({ message: 'doctor not found' });
-      }
+        return res.status(HttpStatus.OK).send({message: 'The doctor found has this data',data: idDocResp, statusCode: HttpStatus.OK })
     } catch (error) {
-      throw new BadRequestException(`Cannot get doctor with id ${id}`);
+      throw new NotFoundException(`Cannot get doctor with id ${id}`); 
     }
   }
 
@@ -57,7 +51,7 @@ export class DoctorsController {
   ): Promise<Response<DoctorsDto>> {
     try {
       const createDoc = await this.doctorsServices.createDoctor(body);
-      return res.status(HttpStatus.CREATED).send(createDoc);
+      return res.status(HttpStatus.CREATED).send({message: "The doctor was created",data: createDoc, statusCode: HttpStatus.CREATED});
     } catch (error) {
       throw new NotFoundException('The doctor was not created');
     }
@@ -71,9 +65,9 @@ export class DoctorsController {
   ): Promise<Response<DoctorsDtoSnPass>> {
     try {
       const updateDoc = await this.doctorsServices.updateDoctorById(id, body);
-      return res.status(HttpStatus.OK).send(updateDoc) ;
+      return res.status(HttpStatus.OK).send({message:"Doctor updated succesfully", data: updateDoc, statusCode: HttpStatus.OK }) ;
     } catch (error) {
-      throw new BadRequestException(`Doctor with ${id} was not found`);
+      throw new BadRequestException(`Doctor with ${id} was not updated`);
     }
   }
   @Delete(':id')
@@ -83,8 +77,8 @@ export class DoctorsController {
     @Res() res: Response,
   ): Promise<Response<DoctorsDto>> {
     try {
-      const deleteDoc = await this.doctorsServices.deleteDoctorById(id);
-      return res.status(HttpStatus.OK).send(deleteDoc);
+      await this.doctorsServices.deleteDoctorById(id);
+      return res.status(HttpStatus.OK).send({message: `The doctor was deleted with id ${id}`, statusCode: HttpStatus.OK});
     } catch (error) {
       throw new NotFoundException('Delete failed');
     }

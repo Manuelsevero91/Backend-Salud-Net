@@ -153,28 +153,20 @@
       "id": "9717ff"
     },
     {
-      "name": "Betiana Rich",
-      "mail": "brich@gmail.com",
-      "speciality": "Pediatria",
-      "license": "MP 15463",
-      "password": "Password19",
-      "id": "5db10c"
+      "name": "Pedro Gonz",
+      "mail": "pgonz@gmail.com",
+      "speciality": "Medicina General",
+      "license": "MP 32851",
+      "password": "Password72",
+      "id": "18b49c"
     },
     {
-      "name": "Luciano Palomo",
-      "mail": "lpalomo@gmail.com",
-      "speciality": "Gastroenterologia",
-      "license": "MP 20802",
-      "password": "Password20",
-      "id": "306689"
-    },
-    {
-      "name": "Juan Perez",
-      "mail": "jperez@gmail.com",
-      "speciality": "Gastroenterologia",
-      "license": "MP 20582",
-      "password": "Password21",
-      "id": "00af08"
+      "name": "Pedro Gonz",
+      "mail": "pgonz@gmail.com",
+      "speciality": "Medicina General",
+      "license": "MP 32851",
+      "password": "Password72",
+      "id": "c326eb"
     }
   ],
   "patients": [
