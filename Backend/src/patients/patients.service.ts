@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PatientI } from './patients.interface';
+import { PatientDto } from './patients.dto';
 
 const { v4: uuidv4 } = require('uuid');
 const url = 'http://localhost:3030/patients/';
@@ -10,24 +11,28 @@ export class PatientsService {
       const res = await fetch(url);
       return await res.json();
     } catch (error) {
-      throw new Error("error getting the list of patients")
+      throw error;
     }
   }
 
-  async getPatientById(id: number): Promise<PatientI> {
-    try {
-      const res = await fetch(url + id);
-      return await res.json();
-    } catch (error) {
-      throw new Error('error getting the patient');
+  async getPatientById(id: string): Promise<PatientI> {
+    try{
+    const res = await fetch(url + id);
+    if (res.status === 404) {
+      throw new Error();
     }
+    return await res.json();
+  }catch (error) {
+    throw error;
   }
+  }
+  
   private async patId(): Promise<number> {
     try {
       const id = uuidv4().slice(0, 6);
       return id;
     } catch (error) {
-      throw new Error('error creating id');
+      throw error;
     }
   }
 
@@ -42,40 +47,27 @@ export class PatientsService {
         },
         body: JSON.stringify(newPatient),
       });
-      const dataPatient = {
-        message: 'The patient was created',
-        data: {
-          name: newPatient.name,
-          phone: newPatient.phone,
-          healthCoverage: newPatient.healthCoverage,
-          dni: newPatient.dni,
-          id: newPatient.id
-        },
-      };
-      return dataPatient;
+    
+      return newPatient;
     } catch (error) {
-      throw new Error('the patient was not created');
+      throw error;
     }
   }
 
-  async deletePatientById(id: number): Promise<any> {
-
+  async deletePatientById(id: string): Promise<PatientI> {
     const res = await fetch(url + id, {
       method: 'DELETE',
     });
     if (!res.ok) {
-      throw new Error('Failed to delete Patient');
+      throw new Error();
     }
-
-    const parsed = await res.json();
-    return parsed;
-
+   
+    return await res.json();
   }
 
-    async updatePatientById(id: number, body: PatientI): Promise<any> {
+  async updatePatientById(id: string, body: PatientI): Promise<PatientDto> {
     try {
-      const isPatient = await this.getPatientById(id);
-      if (!Object.keys(isPatient).length) return;
+       await this.getPatientById(id);
       const upPatient = { ...body, id };
       await fetch(url + id, {
         method: 'Put',
@@ -84,18 +76,10 @@ export class PatientsService {
         },
         body: JSON.stringify(upPatient),
       });
-      const dataPatient = {
-        message: 'The patient was updated',
-        data: {
-          name: upPatient.name,
-          phone: upPatient.phone,
-          healthCoverage: upPatient.healthCoverage,
-          dni: upPatient.dni,
-        },
-      };
-      return dataPatient;
+      
+      return upPatient;
     } catch (error) {
-      throw new Error('the patient was not up dated');
+      throw error;
     }
   }
 }

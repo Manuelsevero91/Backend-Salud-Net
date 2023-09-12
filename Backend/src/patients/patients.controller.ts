@@ -10,10 +10,13 @@ import {
   HttpStatus,
   NotFoundException,
   BadRequestException,
+  ValidationPipe,
+  UsePipes,
 } from '@nestjs/common';
 import { PatientsService } from './patients.service';
 import { PatientI } from './patients.interface';
 import { Response } from 'express';
+import { PatientDto } from './patients.dto';
 
 @Controller('patients')
 export class PatientsController {
@@ -22,7 +25,9 @@ export class PatientsController {
   async getPatients(@Res() res: Response): Promise<Response<PatientI[]>> {
     try {
       const patResp = await this.patientsService.getPatients();
-      return res.status(HttpStatus.OK).json(patResp);
+      return res
+        .status(HttpStatus.OK)
+        .send({ message: 'The Patients list', patResp, statusCode: HttpStatus.OK });
     } catch (error) {
       throw new NotFoundException('Data not found');
     }
@@ -31,68 +36,63 @@ export class PatientsController {
   @Get(':id')
   async getPatientById(
     @Res() res: Response,
-    @Param('id') id: number,
+    @Param('id') id: string,
   ): Promise<Response<PatientI>> {
     try {
-      const patResp = await this.patientsService.getPatientById(id);
-      if (Object.keys(patResp).length) {
-        return res.status(HttpStatus.OK).json(patResp);
-      } else {
-        return res
-          .status(HttpStatus.NOT_FOUND)
-          .json({ error: `Patient with'${id}' does not exists` });
-      }
+      const dataPatient = await this.patientsService.getPatientById(id);
+      return res.status(HttpStatus.OK).send({ message: 'Patient found', dataPatient, statusCode: HttpStatus.OK });
+
     } catch (error) {
-      throw new BadRequestException('Data not found');
+      throw new NotFoundException(`Patient with'${id}' does not exists`);
     }
   }
 
   @Post()
+  @UsePipes(new ValidationPipe({ transform: true }))
   async createPatient(
-    @Body() body,
+    @Body() body: PatientDto,
     @Res() res: Response,
-  ): Promise<Response<PatientI>> {
+  ): Promise<Response<PatientDto>> {
     try {
       const newPatient = await this.patientsService.createPatient(body);
-      return res.status(HttpStatus.CREATED).json({ newPatient });
+      return res.status(HttpStatus.CREATED).json({ message: `The patient was created `, newPatient, statusCode: HttpStatus.CREATED });
     } catch (error) {
       throw new BadRequestException('Patient was not created');
     }
   }
 
   @Delete(':id')
-  async deletePatientById(@Param('id') id: number, @Res() res: Response): Promise<any> {
+  @UsePipes(new ValidationPipe({ transform: true }))
+  async deletePatientById(
+    @Param('id') id: string,
+    @Res() res: Response,
+  ): Promise<Response<PatientI>> {
     try {
-      const result = await this.patientsService.deletePatientById(id);
-      if (result) {
-        return res.status(HttpStatus.OK).send({message: 'the patient was deleted'});
+      const deletePat = await this.patientsService.deletePatientById(id);
+      if (deletePat) {
+        return res.status(HttpStatus.OK).send({ message: `The patient was deleted with id ${id}`, statusCode: HttpStatus.OK });
       }
     } catch (error) {
-      return res.status(HttpStatus.NOT_FOUND).send({ message: 'Delete failed' });
-      }
+      throw new NotFoundException('Deleted Failed');
     }
-  
-
+  }
 
   @Put(':id')
+  @UsePipes(new ValidationPipe({ transform: true }))
   async updatePatientById(
     @Res() res: Response,
-    @Param('id') id: number,
-    @Body() body,
-  ): Promise<Response<PatientI>> {
+    @Param('id') id: string,
+    @Body() body: PatientDto,
+  ): Promise<Response<PatientDto>> {
     try {
       const updatedPatient = await this.patientsService.updatePatientById(
         id,
         body,
       );
-      if (Object.keys(updatedPatient).length) {
-        return res
-          .status(HttpStatus.OK)
-          .json({ 'Patient updated': updatedPatient });
-      }
+        return res.status(HttpStatus.OK).json(({ message: `The patient was updated `, updatedPatient, statusCode: HttpStatus.OK }));
+
     } catch (error) {
-      throw new BadRequestException(`Patient with'${id}' was not found`);
+      throw new BadRequestException(`Patient with'${id}' was not updated`);
     }
   }
-
 }

@@ -1,7 +1,7 @@
 export interface PatientI {
     name: string,
-    phone: number,
+    phone: string,
     healthCoverage: string,
-    dni: number,
-    id?: number
+    dni: string,
+    id?: string
 }
