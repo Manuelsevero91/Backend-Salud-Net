@@ -7,10 +7,6 @@ GUÍA DE INSTALACIÓN
 Instalación a través de npm de:
 
 npm i
-“@nestjs/common”: “^ ^ 10.0.0”
-“@nestjs/core”: “^ ^ 10.1.3”
-“@nestjs/platform-express”: “^ ^ 10.0.0”
-"@nestjs/serve-static ": “^ ^ 4.0.0”
 “@nestjs/cli”: “^10.0.0”
 Documentación Nest.js https://docs.nestjs.com/
 “json-server”: “^0.17.3”,
